@@ -1,0 +1,111 @@
+{
+	"variables": [],
+	"info": {
+		"name": "analytics-metric-logging",
+		"_postman_id": "f89136b5-6505-e5b8-d7bf-e7b97299c1b4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post metric",
+			"request": {
+				"url": {
+					"raw": "https://shielded-wildwood-59367.herokuapp.com/v1/:metric",
+					"protocol": "https",
+					"host": [
+						"shielded-wildwood-59367",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"v1",
+						":metric"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "metric",
+							"value": ""
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"value\": 3\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Median",
+			"request": {
+				"url": {
+					"raw": "https://shielded-wildwood-59367.herokuapp.com/v1/:metric/median",
+					"protocol": "https",
+					"host": [
+						"shielded-wildwood-59367",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"v1",
+						":metric",
+						"median"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "metric",
+							"value": ""
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Metric",
+			"request": {
+				"url": {
+					"raw": "https://shielded-wildwood-59367.herokuapp.com/v1/:metric",
+					"protocol": "https",
+					"host": [
+						"shielded-wildwood-59367",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"v1",
+						":metric"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "metric",
+							"value": ""
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
