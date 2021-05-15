@@ -1,0 +1,19 @@
+{
+    "name": "analytic-metric-logging",
+    "version": "1.0.0",
+    "description": "Metric logging analytic server",
+    "main": "server.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Divya",
+    "license": "ISC",
+    "dependencies": {
+        "async": "^2.6.3",
+        "dotenv": "^9.0.2",
+        "fastify": "^2.6.0",
+        "fastify-autoload": "^3.7.1",
+        "fastify-plugin": "^3.0.0"
+    }
+}
