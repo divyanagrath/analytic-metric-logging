@@ -1,5 +1,5 @@
 
-const cache = require('../utils/cache')
+const metricMap = require('../utils/metric-map')
 const config = require('../config')
 
 const postMetric = function (req, instance) {
@@ -10,7 +10,7 @@ const postMetric = function (req, instance) {
     var newWindow = {}
     var isactive = false;
     try {
-        if (!cache.has(metric)) {
+        if (!metricMap.has(metric)) {
             newWindow.time = instance.timestamp()
             newWindow.avg = value;
             newWindow.isActive = true;
@@ -19,7 +19,7 @@ const postMetric = function (req, instance) {
             metricArray.push(newWindow)
             isactive = true;
         } else {
-            metricArray = cache.get(metric);
+            metricArray = metricMap.get(metric);
             metricArray.map(function (obj) {
                 if (obj.isActive === true) {
                     isactive = true
@@ -49,11 +49,11 @@ const postMetric = function (req, instance) {
 
             metricArray.push(newWindow)
         }
-        cache.set(metric, metricArray)
+        metricMap.set(metric, metricArray)
     } catch (err) {
         req.log.error(err)
     }
-    return cache.get(metric)
+    return metricMap.get(metric)
 }
 
 const getMedian = function (req, instance) {
@@ -63,8 +63,8 @@ const getMedian = function (req, instance) {
     var median = 0;
     let subArray = []
     try {
-        if (cache.has(metric)) {
-            metricArray = cache.get(metric);
+        if (metricMap.has(metric)) {
+            metricArray = metricMap.get(metric);
             var windowLength = 0;
             var lastMetric = metricArray[metricArray.length - 1]
             if (lastMetric.isActive == true) {
@@ -102,8 +102,8 @@ const delMetric = function (req, instance) {
     var startTime = instance.timestamp()
     var metricArray = []
     try {
-        if (cache.has(metric)) {
-            metricArray = cache.get(metric);
+        if (metricMap.has(metric)) {
+            metricArray = metricMap.get(metric);
             var lastMetric = metricArray[metricArray.length - 1]
             if (lastMetric.isActive == true) {
                 var timeDiff = (startTime - lastMetric.time) / 1000;
@@ -120,7 +120,7 @@ const delMetric = function (req, instance) {
     } catch (err) {
         req.log.error(err)
     }
-    return cache.get(metric)
+    return metricMap.get(metric)
 }
 
 function sortByProperty(property) {
